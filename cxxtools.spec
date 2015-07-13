@@ -63,6 +63,7 @@ make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+cp -R %{_builddir}/*  %{buildroot}/
 make install DESTDIR=$RPM_BUILD_ROOT
 
 # Find and remove all la files
