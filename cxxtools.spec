@@ -53,17 +53,16 @@ cd %{_builddir}/cxxtools-master
 autoreconf -i
 
 
-%configure --disable-static \
-%ifarch s390 s390x aarch64
-    --with-atomictype=pthread \
-%endif
-    %{nil}
+%configure --disable-static 
 make %{?_smp_mflags}
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cp -R %{_builddir}/*  %{buildroot}/
+cp -R %{_builddir}/cxxtools-master/*  %{buildroot}/
+
+ls -lah
+
 make install DESTDIR=$RPM_BUILD_ROOT
 
 # Find and remove all la files
