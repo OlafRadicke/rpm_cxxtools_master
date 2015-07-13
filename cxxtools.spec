@@ -58,9 +58,21 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p  $RPM_BUILD_ROOT
-cp -R %{_builddir}/cxxtools-master/*  %{buildroot}/
+
+mkdir -p %{buildroot}/
+cp -R %{_builddir}/*  %{buildroot}/
+touch %{buildroot}/RPM_INSTALL
+
+if [ $1 -eq 1 ]; then
+    echo "First install"
+else
+    echo "Upgrade"
+fi
+
+
+ls -lah
+cd %{buildroot}/cxxtools-master
+
 
 ls -lah
 
