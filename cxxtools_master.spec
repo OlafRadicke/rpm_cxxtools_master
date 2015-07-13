@@ -22,6 +22,13 @@ Install the cxxtools lib with the code of the master branch. cxxtools is a toolb
 
 %build
 
+%install
+if [ $1 -eq 1 ]; then
+    echo "First install"
+else
+    echo "Upgrade"
+fi
+
 rm -Rvf %{_builddir}/*
 # mkdir -p %{_builddir}/
 touch %{_builddir}/RPM_BUILD
@@ -45,22 +52,7 @@ autoreconf -i
 make
 ls -lah
 
-%install
-mkdir -p %{buildroot}/
-cp -R %{_builddir}/*  %{buildroot}/
-touch %{buildroot}/RPM_INSTALL
 
-if [ $1 -eq 1 ]; then
-    echo "First install"
-else
-    echo "Upgrade"
-fi
-
-
-ls -lah
-cd %{buildroot}/cxxtools-master
-# make install DESTDIR=$RPM_BUILD_ROOT
-# make install prefix=%{_prefix} INSTALL=”%{__install} -p” DESTDIR=$RPM_BUILD_ROOT
 make install prefix=%{_prefix} DESTDIR=$RPM_BUILD_ROOT
 
 mkdir -p %{buildroot}/etc/ld.so.conf.d/
