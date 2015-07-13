@@ -54,6 +54,9 @@ ls -lah
 
 
 make install prefix=%{_prefix} DESTDIR=$RPM_BUILD_ROOT
+cd ..
+rm -Rvf ./cxxtools-master
+
 
 mkdir -p %{buildroot}/etc/ld.so.conf.d/
 echo "/usr/local/lib" >  %{buildroot}/etc/ld.so.conf.d/cxxtools.conf
