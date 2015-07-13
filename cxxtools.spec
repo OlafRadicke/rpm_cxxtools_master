@@ -53,12 +53,13 @@ cd %{_builddir}/cxxtools-master
 autoreconf -i
 
 
-%configure --disable-static 
+%configure --disable-static
 make %{?_smp_mflags}
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p  $RPM_BUILD_ROOT
 cp -R %{_builddir}/cxxtools-master/*  %{buildroot}/
 
 ls -lah
