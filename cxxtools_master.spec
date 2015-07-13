@@ -52,7 +52,7 @@ autoreconf -i
 make
 ls -lah
 
-
+mkdir -p %{buildroot}/usr/local/lib
 make install prefix=%{_prefix} DESTDIR=$RPM_BUILD_ROOT
 cd ..
 rm -Rvf ./cxxtools-master
